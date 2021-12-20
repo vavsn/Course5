@@ -1,0 +1,16 @@
+'use script'	
+let val, pow
+val = parseInt(prompt("Введите число: "))
+pow = parseInt(prompt("Введите степень: "))
+
+function power(val, pow)
+{
+	if (pow = 1)
+	{
+		return 1;
+	}
+	pow--;
+	return val * power(val, pow) 
+}
+
+alert(power(val, pow))    
