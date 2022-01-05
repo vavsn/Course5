@@ -18,8 +18,8 @@
     -->
 	
 	<script>
-	
-		addEventListener("click", function(event) {
+		let but = document.querySelector("button");
+		but.addEventListener("click", function(event) {
 			if (event.target.nodeName == "BUTTON")
 				console.log("id = ", event.target.id, " ClassName = ", event.target.className, " textContent = ", event.target.textContent);
 			});		
