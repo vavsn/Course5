@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <button>Показать сообщение</button>
+    <div class="message">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aliquam enim voluptates quibusdam
+        perferendis sint ipsa, nulla quas doloribus nobis libero voluptatem unde inventore. Ut quas corporis fugit error
+        explicabo? Ipsa quos qui similique sequi officia quod ab reiciendis alias!
+    </div>
+
+    <!-- 
+    Задание. Вам нужно чтобы при клике на кнопку появлялось сообщение .message
+    снизу экрана, в общем как сообщения вконтакте.
+    1. Аудио воспроизводите как здесь https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
+    2. Чтобы получить высоту .message, используйте свойство clientHeight
+    3. Чтобы анимировать перемещение .message используйте стиль transform
+    как здесь https://webref.ru/css/value/translatey
+    -->
+
+    <script>
+        let btn = document.querySelector("button");
+		let msg = document.querySelector(".message");
+		let audioElement = new Audio('notification.mp3');
+
+		const availableScreenWidth = window.screen.availWidth
+		const availableScreenHeight = window.screen.availHeight
+		
+		function closeW(w) {
+			w.close();
+		}
+		
+		btn.addEventListener("click", function() {
+			
+			let messageHeight = msg.clientHeight+30;
+			let str = "resizable=no,scrollbars=no,width=350,height="+messageHeight+",copyhistory=1";
+			let popUpW = window.open("", "PopUp Window", str);
+			const windowOuterWidth = popUpW.outerWidth;
+			const windowOuterHeight = popUpW.outerHeight;
+			
+			popUpW.moveTo(availableScreenWidth - windowOuterWidth, availableScreenHeight - windowOuterHeight);
+			popUpW.document.write(msg.innerText);
+			
+			audioElement.play();
+	
+			setTimeout(closeW,5000, popUpW);
+		});
+    </script>
+</body>
+
+</html>
